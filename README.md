@@ -5,7 +5,7 @@ scaling risk and CIP frequency optimization to support operational and
 EPC design decisions for RO desalination plants.
 
 ## Live Demo
-👉 Coming soon
+👉 ro-operational-planner.streamlit.app
 
 ---
 
