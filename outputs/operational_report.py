@@ -35,7 +35,20 @@ def _set_dynamic_ylim(ax, values, margin_ratio: float = 0.10):
     ax.set_ylim(data_min - margin, data_max + margin)
 
 
-def plot_seasonal_risk_calendar(calendar_df, location_name: str):
+def _save_or_return(fig, output_path: Path, return_fig: bool):
+    fig.savefig(output_path, dpi=180, bbox_inches="tight")
+    if return_fig:
+        return fig
+
+    plt.close(fig)
+    return output_path
+
+
+def plot_seasonal_risk_calendar(
+    calendar_df,
+    location_name: str,
+    return_fig: bool = False,
+):
     """
     Plot a monthly heatmap of scaling risk indicators.
     """
@@ -97,12 +110,14 @@ def plot_seasonal_risk_calendar(calendar_df, location_name: str):
 
     fig.tight_layout()
     output_path = output_dir / "seasonal_risk_calendar.png"
-    fig.savefig(output_path, dpi=180, bbox_inches="tight")
-    plt.close(fig)
-    return output_path
+    return _save_or_return(fig, output_path, return_fig)
 
 
-def plot_operational_trends(calendar_df, location_name: str):
+def plot_operational_trends(
+    calendar_df,
+    location_name: str,
+    return_fig: bool = False,
+):
     """
     Plot monthly temperature, salinity, scaling, and CIP trends.
     """
@@ -206,12 +221,15 @@ def plot_operational_trends(calendar_df, location_name: str):
     fig.tight_layout()
 
     output_path = output_dir / "operational_trends.png"
-    fig.savefig(output_path, dpi=180, bbox_inches="tight")
-    plt.close(fig)
-    return output_path
+    return _save_or_return(fig, output_path, return_fig)
 
 
-def plot_opex_comparison(scenarios_results: dict, plant_capacity, location_name: str):
+def plot_opex_comparison(
+    scenarios_results: dict,
+    plant_capacity,
+    location_name: str,
+    return_fig: bool = False,
+):
     """
     Plot stacked annual OPEX bars for multiple operating scenarios.
     """
@@ -264,6 +282,4 @@ def plot_opex_comparison(scenarios_results: dict, plant_capacity, location_name:
 
     fig.tight_layout()
     output_path = output_dir / "opex_comparison.png"
-    fig.savefig(output_path, dpi=180, bbox_inches="tight")
-    plt.close(fig)
-    return output_path
+    return _save_or_return(fig, output_path, return_fig)

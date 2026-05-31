@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ro-operational-planner"
+version = "0.1.0"
+description = "Operational planning tool for RO plants integrating seasonal water variability, scaling risk and CIP frequency"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "pandas",
+    "scikit-learn",
+    "copernicusmarine",
+    "xarray",
+    "jupyter",
+    "streamlit",
+]
+
+[tool.setuptools]
+packages = ["core", "copernicus", "outputs"]
+
+[tool.poetry]
+package-mode = false
